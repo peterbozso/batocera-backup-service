@@ -16,8 +16,8 @@ It uses Batocera's [services](https://wiki.batocera.org/launch_a_script#services
 
 #### Setup
 
-1. Copy the `backup` file from the [services](/services/) directory of this repo into your Batocera installation's `/userdata/system/services` directory.
-2. If needed, modify the config at the top of the file.
+1. Copy the [backup](/services/backup) file to your Batocera installation's `/userdata/system/services` directory.
+2. If needed, modify the configuration at the top of the file.
 3. Follow the steps of one of the methods [here](https://rclone.org/remote_setup/) and set up a remote with the name `backup`.
 4. Restart Batocera or use `batocera-services restart backup`.
 
