@@ -1,8 +1,13 @@
 #!/bin/bash
 
 # --------------------- CONFIG BEGIN ---------------------
-# The saves folder on your cloud storage.
+
+# The location of the saves folder on your cloud storage.
 destinationFolder=/Games/Batocera/saves
+
+# Waiting time between two backups in seconds. The below configuration means that the service will do a backup of your saves every minute.
+waitTime=60
+
 # ---------------------- CONFIG END ----------------------
 
 do_sync() {
@@ -23,6 +28,10 @@ case "$1" in
         ;;
     start)
         nohup rclone rcd --rc-no-auth &>/dev/null &
+        # while true; do
+        #     do_sync
+        #     sleep ${waitTime}
+        # done
         ;;
     stop)
         rclone rc core/quit &>/dev/null
