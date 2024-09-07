@@ -1,8 +1,22 @@
 #!/bin/bash
 
+do_sync() {
+    echo "> SAVES sync" -------------------------------------------------------------------------------------
+    rclone rc sync/sync srcFs=/userdata/saves dstFs=onedrive:/Games/Batocera/saves -P
+
+    echo "> BIOS sync" --------------------------------------------------------------------------------------
+    rclone sync /userdata/bios onedrive:/Games/Batocera/bios -P
+
+    echo "> ROMS sync" --------------------------------------------------------------------------------------
+    rclone sync /userdata/roms onedrive:/Games/Batocera/roms -P
+}
+
 case "$1" in
+    manual)
+        do_sync
+        ;;
     start)
-        nohup rclone rcd &>/dev/null &
+        nohup rclone rcd --rc-no-auth &>/dev/null &
         ;;
     stop)
         rclone rc core/quit &>/dev/null
