@@ -2,10 +2,10 @@
 
 case "$1" in
     start)
-        rclone rcd
+        nohup rclone rcd &>/dev/null &
         ;;
     stop)
-        rclone rc core/quit
+        rclone rc core/quit &>/dev/null
         ;;
     status)
         rclone rc core/stats
