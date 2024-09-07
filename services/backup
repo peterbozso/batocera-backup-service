@@ -1,17 +1,17 @@
 #!/bin/bash
 
+# --------------------- CONFIG BEGIN ---------------------
+# The saves folder on your cloud storage.
+destinationFolder=/Games/Batocera/saves
+# ---------------------- CONFIG END ----------------------
+
 do_sync() {
-    # rclone sync /userdata/system/backup.sh onedrive:/Games/Batocera/system
-    # rclone sync /userdata/system/batocera.conf onedrive:/Games/Batocera/system
+    rclone rc sync/sync srcFs=/userdata/saves dstFs=backup:${destinationFolder} -P
 
-    echo "> SAVES sync" -------------------------------------------------------------------------------------
-    rclone rc sync/sync srcFs=/userdata/saves dstFs=backup:/Games/Batocera/saves -P
-
-    echo "> BIOS sync" --------------------------------------------------------------------------------------
-    rclone rc sync/sync srcFs=/userdata/bios dstFs=backup:/Games/Batocera/bios -P
-
-    echo "> ROMS sync" --------------------------------------------------------------------------------------
-    rclone rc sync/sync srcFs=/userdata/roms dstFs=backup:/Games/Batocera/roms -P
+    # TODO: other stuff to consider:
+    # /userdata/system/batocera.conf
+    # /userdata/bios
+    # /userdata/roms
 }
 
 case "$1" in
