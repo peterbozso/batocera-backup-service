@@ -2,6 +2,8 @@
 
 A collection of scripts I use to enhance my [Batocera](https://batocera.org/) setup.
 
+They use Batocera's [services](https://wiki.batocera.org/launch_a_script#services) feature.
+
 ## Development
 
 Install [workspace recommended extensions in VS Code](https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions), so the scripts can be [automatically copied](/.vscode/settings.json#L6) to the Batocera machine on save.
