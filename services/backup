@@ -6,13 +6,15 @@ destinationFolder=/Games/Batocera/saves
 # ---------------------- CONFIG END ----------------------
 
 do_sync() {
-    # TODO: improve output
+    # TODO: Improve output.
+    # TODO: Consider making it async: https://rclone.org/rc/#running-asynchronous-jobs-with-async-true
     rclone rc sync/sync srcFs=/userdata/saves dstFs=backup:${destinationFolder} -P
 
-    # TODO: other stuff to consider:
-    # /userdata/system/batocera.conf
-    # /userdata/bios
-    # /userdata/roms
+    # TODO: Make is possible to sync other stuff.
+    # Examples:
+    #     /userdata/system/batocera.conf
+    #     /userdata/bios
+    #     /userdata/roms
 }
 
 case "$1" in
@@ -26,7 +28,7 @@ case "$1" in
         rclone rc core/quit &>/dev/null
         ;;
     status)
-        # TODO: improve output
+        # TODO: Improve output.
         rclone rc core/stats
         ;;
 esac
