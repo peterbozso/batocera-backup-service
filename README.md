@@ -8,7 +8,7 @@ A collection of scripts I use to enhance my [Batocera](https://batocera.org/) se
 
 > ⚠️ Please note that this script in currently under development and not ready for use.
 
-Uses [rclone](https://rclone.org/) to periodically backup your data to your cloud storage account (OneDrive, Google Drive, Dropbox, etc.).
+This script uses [rclone](https://rclone.org/) to periodically backup your data to your cloud storage account (OneDrive, Google Drive, Dropbox, etc.).
 
 By default, it only backs up saves, but you can configure it to include other data as well.
 
