@@ -1,0 +1,11 @@
+{
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "backup.sh",
+                "cmd": "sshpass -p \"linux\" scp ${file} root@batocera:/userdata/system",
+                "isAsync": true,
+            }
+        ]
+    }
+}
