@@ -4,6 +4,10 @@ A collection of scripts I use to enhance my [Batocera](https://batocera.org/) se
 
 ## Services
 
+| Name              | Description                                                                                                                                |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| [backup](#backup) | Uses [rclone](https://rclone.org/) to periodically backup your data to your cloud storage account (OneDrive, Google Drive, Dropbox, etc.). |
+
 They use Batocera's [services](https://wiki.batocera.org/launch_a_script#services) feature.
 
 They all need to be installed the same way:
@@ -13,15 +17,15 @@ They all need to be installed the same way:
 
 ### backup
 
-This one uses [rclone](https://rclone.org/) to periodically backup your data to your cloud storage account (OneDrive, Google Drive, Dropbox, etc.).
-
 #### Setup
 
-Follow the steps of one of the methods [here](https://rclone.org/remote_setup/) and set up a remote of your choice with the name `backup`.
+1. Follow the steps of one of the methods [here](https://rclone.org/remote_setup/) and set up a remote of your choice with the name `backup`.
+2. Modify the config at the top of the `backup` file.
+3. Restart Batocera or use `batocera-services restart backup`.
 
 #### Usage
 
-To do a manual sync:
+To do a manual backup:
 
 ```bash
 chmod +x backup
