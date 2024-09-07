@@ -6,6 +6,7 @@ destinationFolder=/Games/Batocera/saves
 # ---------------------- CONFIG END ----------------------
 
 do_sync() {
+    # TODO: improve output
     rclone rc sync/sync srcFs=/userdata/saves dstFs=backup:${destinationFolder} -P
 
     # TODO: other stuff to consider:
@@ -25,6 +26,7 @@ case "$1" in
         rclone rc core/quit &>/dev/null
         ;;
     status)
+        # TODO: improve output
         rclone rc core/stats
         ;;
 esac
