@@ -1,5 +1,5 @@
 #!/bin/bash
-# Backup script for Batocera 40 using rclone - https://batocera.org/changelog
+# Backup script for Batocera v40 using rclone - https://batocera.org/changelog
 
 rclone sync /userdata/system/backup.sh onedrive:/Games/Batocera/system
 rclone sync /userdata/system/batocera.conf onedrive:/Games/Batocera/system
