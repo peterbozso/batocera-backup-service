@@ -2,9 +2,7 @@
 
 A collection of scripts I use to enhance my [Batocera](https://batocera.org/) setup.
 
-## Usage
-
-### backup
+## backup
 
 > ⚠️ Please note that this script in currently under development and not ready for use.
 
@@ -14,14 +12,14 @@ By default, it only backs up saves, but you can configure it to include other da
 
 It uses Batocera's [services](https://wiki.batocera.org/launch_a_script#services) feature.
 
-#### Setup
+### Setup
 
 1. Copy the [backup](/services/backup) file to your Batocera installation's `/userdata/system/services` directory.
 2. If needed, modify the configuration at the top of the file.
 3. Follow the steps of one of the methods [here](https://rclone.org/remote_setup/) and set up a remote with the name `backup`.
 4. Restart Batocera or use `batocera-services restart backup`.
 
-#### Usage
+### Usage
 
 To do a manual backup:
 
@@ -34,6 +32,6 @@ To continuously monitor progress: `watch batocera-services status backup`
 
 ## Development
 
-Install [workspace recommended extensions in VS Code](https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions), so the scripts can be [automatically copied](/.vscode/settings.json#L6) to the Batocera machine on save.
+Open this repo in VS Code and install the [workspace recommended extensions](https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions), so the scripts can be [automatically copied](/.vscode/settings.json#L6) to the Batocera machine on save.
 
 Local dependencies that need to be installed for the copying to work: `sshpass`, `scp`.
