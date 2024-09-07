@@ -15,16 +15,11 @@ This script uses [rclone](https://rclone.org/) to periodically backup your data 
 1. Copy the [backup](/services/backup) script to your Batocera installation's `/userdata/system/services` directory.
 2. Modify the [configuration](/services/backup#L3) at the top of the file according to your needs.
 3. Follow the steps in one of the methods [here](https://rclone.org/remote_setup/) and set up a remote with the name `backup`.
-4. Restart Batocera or use `batocera-services restart backup`.
+4. Restart Batocera or use `batocera-services start backup`.
 
 #### Usage
 
-To do a manual backup:
-
-```bash
-chmod +x backup
-./backup manual
-```
+To do a manual backup: `bash backup manual`
 
 To continuously monitor progress: `watch batocera-services status backup`
 
