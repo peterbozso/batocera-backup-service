@@ -6,7 +6,7 @@
 destinationFolder=/Games/Batocera/saves
 
 # Waiting time between two backups in seconds. The below configuration means that the service will do a backup every minute.
-waitTime=60
+waitSeconds=60
 
 # ---------------------- CONFIG END ----------------------
 
@@ -30,7 +30,7 @@ case "$1" in
         nohup rclone rcd --rc-no-auth &>/dev/null &
         # while true; do
         #     do_sync
-        #     sleep ${waitTime}
+        #     sleep ${waitSeconds}
         # done
         ;;
     stop)
