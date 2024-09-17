@@ -10,6 +10,8 @@ waitSeconds=10
 
 # ---------------------- CONFIG END ----------------------
 
+PIDFile=/var/run/backup.pid
+
 do_sync() {
     # TODO: Improve output.
     # TODO: Consider making it async: https://rclone.org/rc/#running-asynchronous-jobs-with-async-true
@@ -27,14 +29,15 @@ case "$1" in
         do_sync
         ;;
     start)
-        echo "STUB: backup stop"
-        # while true; do
-        #     do_sync
-        #     sleep ${waitSeconds}
-        # done
+        echo $$ >>${PIDFile}
+        while true; do
+            do_sync
+            sleep ${waitSeconds}
+        done
         ;;
     stop)
-        echo "STUB: backup stop"
+        kill $(cat ${PIDFile})
+        rm ${PIDFile}
         ;;
     status)
         echo "STUB: backup status"
