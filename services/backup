@@ -13,8 +13,6 @@ waitSeconds=10
 PIDFile=/var/run/backup.pid
 
 do_sync() {
-    # TODO: Improve output.
-    # TODO: Consider making it async: https://rclone.org/rc/#running-asynchronous-jobs-with-async-true
     rclone sync /userdata/saves backup:${destinationFolder} -P
 
     # TODO: Make is possible to sync other stuff.
