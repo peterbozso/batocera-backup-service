@@ -29,7 +29,7 @@ case "$1" in
         do_sync
         ;;
     start)
-        echo $$ >>${PIDFile}
+        echo $BASHPID >>${PIDFile}
         while true; do
             do_sync
             sleep ${waitSeconds}
