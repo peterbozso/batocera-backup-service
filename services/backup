@@ -6,7 +6,7 @@
 destinationFolder=/Games/Batocera/saves
 
 # Waiting time between two backups in seconds. The below configuration means that the service will do a backup every minute.
-waitSeconds=60
+waitSeconds=10
 
 # ---------------------- CONFIG END ----------------------
 
