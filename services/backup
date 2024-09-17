@@ -13,7 +13,7 @@ waitSeconds=10
 do_sync() {
     # TODO: Improve output.
     # TODO: Consider making it async: https://rclone.org/rc/#running-asynchronous-jobs-with-async-true
-    rclone rc sync/sync srcFs=/userdata/saves dstFs=backup:${destinationFolder} -P
+    rclone sync /userdata/saves backup:${destinationFolder} -P
 
     # TODO: Make is possible to sync other stuff.
     # Examples:
@@ -27,17 +27,16 @@ case "$1" in
         do_sync
         ;;
     start)
-        nohup rclone rcd --rc-no-auth &>/dev/null &
+        echo "STUB: backup stop"
         # while true; do
         #     do_sync
         #     sleep ${waitSeconds}
         # done
         ;;
     stop)
-        rclone rc core/quit &>/dev/null
+        echo "STUB: backup stop"
         ;;
     status)
-        # TODO: Improve output.
-        rclone rc core/stats
+        echo "STUB: backup status"
         ;;
 esac
