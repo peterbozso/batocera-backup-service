@@ -3,7 +3,8 @@
 # --------------------- CONFIG BEGIN ---------------------
 
 # The location of the saves folder on your cloud storage.
-destinationFolder=/Games/Batocera/saves
+# TODO: set back to saves instead of roms
+destinationFolder=/Games/Batocera/roms
 
 # Waiting time between two backups in seconds. The below configuration means that the service will do a backup every minute.
 waitSeconds=10
@@ -11,9 +12,12 @@ waitSeconds=10
 # ---------------------- CONFIG END ----------------------
 
 PIDFile=/var/run/backup.pid
+logFile=/var/log/batocera.log
 
 do_sync() {
-    rclone sync /userdata/saves backup:${destinationFolder} -P
+    # TODO: set back to saves instead of roms
+    rm -f ${logFile}
+    rclone sync /userdata/roms backup:/Games/Batocera/roms --log-file ${logFile} --log-level INFO --stats 1s
 
     # TODO: Make is possible to sync other stuff.
     # Examples:
@@ -38,6 +42,10 @@ case "$1" in
         rm ${PIDFile}
         ;;
     status)
-        echo "STUB: backup status"
+        if [ ! -f ${PIDFile} ]; then
+            echo "There's no backup in progress."
+        else
+            cat ${logFile}
+        fi
         ;;
 esac
