@@ -6,12 +6,12 @@
 destinationFolder=/Games/Batocera/saves
 
 # Waiting time between two backups in seconds. The below configuration means that the service will do a backup every minute.
-waitSeconds=10 # TODO: change it back to 60
+waitSeconds=30 # TODO: change it back to 60
 
 # ---------------------- CONFIG END ----------------------
 
-PIDFile=/var/run/backup.pid
-logFile=/var/log/batocera.log
+runFile=/var/run/backup
+logFile=/var/log/backup.log
 
 do_sync() {
     rm -f ${logFile}
@@ -24,26 +24,48 @@ do_sync() {
     #     /userdata/roms
 }
 
+start() {
+    touch ${runFile}
+    while test -e ${runFile}; do
+        echo "0" >${runFile}
+        do_sync
+        echo ${waitSeconds} >${runFile}
+        sleep ${waitSeconds}
+    done
+}
+
+stop() {
+    rm -f ${runFile}
+}
+
+status() {
+    if test -e ${runFile}; then
+        remainingSeconds=$(<${runFile})
+
+        if [ ${remainingSeconds} -eq "0" ]; then
+            cat ${logFile}
+        else
+            echo "There's no backup in progress."
+        fi
+    else
+        echo "Service is not started."
+    fi
+}
+
 case "$1" in
     manual)
         do_sync
         ;;
     start)
-        echo $BASHPID >>${PIDFile}
-        while true; do
-            do_sync
-            sleep ${waitSeconds}
-        done
+        start &
         ;;
     stop)
-        kill $(cat ${PIDFile})
-        rm ${PIDFile}
+        stop
         ;;
     status)
-        if [ ! -f ${PIDFile} ]; then
-            echo "There's no backup in progress."
-        else
-            cat ${logFile}
-        fi
+        status
+        ;;
+    *)
+        echo "Usage: https://gitlab.com/peterbozso/batocera-scripts#backup"
         ;;
 esac
