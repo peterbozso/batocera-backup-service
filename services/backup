@@ -6,11 +6,12 @@
 destinationFolder=/Games/Batocera/saves
 
 # Waiting time between two backups in seconds. The below configuration means that the service will do a backup every minute.
-waitSeconds=30 # TODO: change it back to 60
+waitSeconds=60 # TODO: change it back to 60
 
 # ---------------------- CONFIG END ----------------------
 
 runFile=/var/run/backup
+statusFile=/var/run/backup.status
 logFile=/var/log/backup.log
 
 do_sync() {
@@ -27,10 +28,12 @@ do_sync() {
 start() {
     touch ${runFile}
     while test -e ${runFile}; do
-        echo "0" >${runFile}
-        do_sync
-        echo ${waitSeconds} >${runFile}
+        nextBackup=$(($(date +%s) + ${waitSeconds}))
+        echo ${nextBackup} >${statusFile}
         sleep ${waitSeconds}
+
+        echo "0" >${statusFile}
+        do_sync
     done
 }
 
@@ -40,15 +43,16 @@ stop() {
 
 status() {
     if test -e ${runFile}; then
-        remainingSeconds=$(<${runFile})
+        nextBackupSeconds=$(<${statusFile})
 
-        if [ ${remainingSeconds} -eq "0" ]; then
+        if [ ${nextBackupSeconds} -eq "0" ]; then
             cat ${logFile}
         else
-            echo "There's no backup in progress."
+            nextBackupDate=$(date --date @${nextBackupSeconds})
+            echo "There's no backup in progress. Next: ${nextBackupDate}"
         fi
     else
-        echo "Service is not started."
+        echo "Service is not running."
     fi
 }
 
