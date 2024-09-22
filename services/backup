@@ -14,15 +14,8 @@ runFile=/var/run/backup
 statusFile=/var/run/backup.status
 logFile=/var/log/backup.log
 
-do_sync() {
-    rm -f ${logFile}
-    rclone sync /userdata/saves backup:${destinationFolder} --log-file ${logFile} --log-level INFO --stats 1s
-
-    # TODO: Make is possible to sync other stuff.
-    # Examples:
-    #     /userdata/system/batocera.conf
-    #     /userdata/bios
-    #     /userdata/roms
+manual() {
+    rclone sync /userdata/saves backup:${destinationFolder} --progress
 }
 
 start() {
@@ -33,7 +26,14 @@ start() {
         sleep ${waitSeconds}
 
         echo "0" >${statusFile}
-        do_sync
+        rm -f ${logFile}
+        rclone sync /userdata/saves backup:${destinationFolder} --log-file ${logFile} --log-level INFO --stats 1s
+
+        # TODO: Make is possible to sync other stuff.
+        # Examples:
+        #     /userdata/system/batocera.conf
+        #     /userdata/bios
+        #     /userdata/roms
     done
 }
 
@@ -58,7 +58,7 @@ status() {
 
 case "$1" in
     manual)
-        do_sync
+        manual
         ;;
     start)
         start &
