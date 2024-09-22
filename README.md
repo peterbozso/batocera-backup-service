@@ -21,7 +21,7 @@ This script uses [rclone](https://rclone.org/) to periodically backup your data 
 
 To do a manual backup: `bash backup manual`
 
-To continuously monitor progress: `watch batocera-services status backup`
+To continuously monitor progress: `watch -n 0.5 batocera-services status backup`
 
 ## Development
 
