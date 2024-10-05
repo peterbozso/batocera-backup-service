@@ -14,6 +14,8 @@ runFile=/var/run/backup
 statusFile=/var/run/backup.status
 logFile=/var/log/backup.log
 
+# TODO: exclude flatpak!
+
 manual() {
     rclone sync /userdata/saves backup:${destinationFolder} --progress
 }
