@@ -2,12 +2,12 @@
     "emeraldwalk.runonsave": {
         "commands": [
             {
-                "match": "services/*",
+                "match": "services/.*",
                 "cmd": "sshpass -p \"linux\" scp ${file} root@batocera:/userdata/system/services",
                 "isAsync": true,
             },
             {
-                "match": "scripts/*",
+                "match": "manual/.*",
                 "cmd": "sshpass -p \"linux\" scp ${file} root@batocera:/userdata/system/scripts",
                 "isAsync": true,
             }
