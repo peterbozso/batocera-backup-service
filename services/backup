@@ -3,7 +3,7 @@
 # --------------------- CONFIG BEGIN ---------------------
 
 # The location of the saves folder on your cloud storage.
-destinationFolder=/Test/Batocera
+destinationFolder=/Games/Batocera
 
 # Waiting time between two backups in seconds. The below configuration means that the service will do a backup every minute.
 waitSeconds=60
