@@ -8,7 +8,12 @@ A script for [Batocera](https://batocera.org/) to backup your data to a cloud st
 It has two modes:
 
 * [Automatic](#automatic): using Batocera's [services](https://wiki.batocera.org/launch_a_script#services) feature, it periodically uploads your saves in the background.
-* [Manual](#manual): by running the script manually, you can do a full backup of your data. 
+* [Manual](#manual): by running the script manually, you can do a full backup of your data.
+
+> [!IMPORTANT]  
+> Steam data is currently not backed up by this script. Only the [saves handled by Steam](https://store.steampowered.com/account/remotestorage) are saved outside of Batocera.
+>
+> Since [Steam on Batocera](https://wiki.batocera.org/systems:steam) is installed using [Flatpak](https://wiki.batocera.org/systems:flatpak), it's data is structured differently than the other systems. All game data, not just saves, is stored in the `/userdata/saves/flatpak` directory.
 
 ## Setup
 
