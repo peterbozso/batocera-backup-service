@@ -3,7 +3,7 @@
 # --------------------- CONFIG BEGIN ---------------------
 
 # The location of the saves folder on your cloud storage.
-destinationFolder=/Test/Batocera/saves
+destinationFolder=/Test/Batocera
 
 # Waiting time between two backups in seconds. The below configuration means that the service will do a backup every minute.
 waitSeconds=60 # TODO: change it back to 60
@@ -14,10 +14,18 @@ runFile=/var/run/backup
 statusFile=/var/run/backup.status
 logFile=/var/log/backup.log
 
-# TODO: exclude flatpak!
-
 manual() {
-    rclone sync /userdata/saves backup:${destinationFolder} --progress
+    echo "> CONFIG sync" ------------------------------------------------------------------------------------
+    rclone sync /userdata/system/batocera.conf backup:${destinationFolder}/system --progress
+
+    echo "> SAVES sync" -------------------------------------------------------------------------------------
+    rclone sync /userdata/saves backup:${destinationFolder}/saves --progress --exclude "flatpak/**"
+
+    echo "> ROMS sync" --------------------------------------------------------------------------------------
+    rclone sync /userdata/roms backup:${destinationFolder}/roms --progress --exclude "flatpak/**"
+
+    echo "> BIOS sync" --------------------------------------------------------------------------------------
+    rclone sync /userdata/bios backup:${destinationFolder}/bios --progress
 }
 
 start() {
@@ -29,13 +37,9 @@ start() {
 
         echo "0" >${statusFile}
         rm -f ${logFile}
-        rclone sync /userdata/saves backup:${destinationFolder} --log-file ${logFile} --log-level INFO --stats 1s
 
-        # TODO: Make is possible to sync other stuff.
-        # Examples:
-        #     /userdata/system/batocera.conf
-        #     /userdata/bios
-        #     /userdata/roms
+        # TODO: exclude flatpak!
+        rclone sync /userdata/saves backup:${destinationFolder} --log-file ${logFile} --log-level INFO --stats 1s
     done
 }
 
