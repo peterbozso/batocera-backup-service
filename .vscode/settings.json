@@ -5,11 +5,6 @@
                 "match": "services/.*",
                 "cmd": "sshpass -p \"linux\" scp ${file} root@batocera:/userdata/system/services",
                 "isAsync": true,
-            },
-            {
-                "match": "manual/.*",
-                "cmd": "sshpass -p \"linux\" scp ${file} root@batocera:/userdata/system/scripts",
-                "isAsync": true,
             }
         ]
     }
