@@ -1,29 +1,35 @@
-# Péter's Batocera Scripts
+# Batocera Backup Service
 
-A collection of scripts I use to enhance my [Batocera](https://batocera.org/) setup.
+> [!WARNING]
+> Please note that the content of this repo is currently under development and not ready for use.
 
-## Documentation
+A script for [Batocera](https://wiki.batocera.org/launch_a_script#services) to backup your data to a cloud storage using [rclone](https://rclone.org/).
 
-### backup
+It has two modes:
 
-> ⚠️ Please note that this script in currently under development and not ready for use.
+* [Automatic](#automatic): using Batocera's [services](https://wiki.batocera.org/launch_a_script#services) feature, it periodically uploads your saves in the background.
+* [Manual](#manual): by running the script manually, you can do a full backup of your data. 
 
-This script uses [rclone](https://rclone.org/) to periodically backup your data to your cloud storage (OneDrive, Google Drive, Dropbox, etc.). By default, it only backs up saves, but you can configure it to include other data as well. It uses Batocera's [services](https://wiki.batocera.org/launch_a_script#services) feature.
-
-#### Setup
+## Setup
 
 1. Copy the [backup](/services/backup) script to your Batocera installation's `/userdata/system/services` directory.
 2. Modify the [configuration](/services/backup#L3) at the top of the file according to your needs.
 3. Follow the steps in one of the methods [here](https://rclone.org/remote_setup/) and set up a remote with the name `backup`.
 4. Restart Batocera or use `batocera-services start backup`.
 
-#### Usage
+## Usage
+
+### Automatic
+
+Refer to the [Batocera wiki](https://wiki.batocera.org/launch_a_script#services) to learn how to manage services.
+
+To continuously monitor progress: `watch -n 0.5 batocera-services status backup`
+
+### Manual
 
 To do a manual backup: `bash services/backup manual`
 
 This does a full backup including not just saves, but your configuration (`batocera.conf`), ROMs and BIOS files. Use this after you modify any of those.
-
-To continuously monitor progress: `watch -n 0.5 batocera-services status backup`
 
 ## Development
 
