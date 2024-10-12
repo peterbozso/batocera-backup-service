@@ -3,7 +3,7 @@
 > [!WARNING]
 > Please note that the content of this repo is currently under development and not ready for use.
 
-A script for [Batocera](https://wiki.batocera.org/launch_a_script#services) to backup your data to a cloud storage using [rclone](https://rclone.org/).
+A script for [Batocera](https://batocera.org/) to backup your data to a cloud storage using [rclone](https://rclone.org/).
 
 It has two modes:
 
