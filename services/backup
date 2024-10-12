@@ -19,10 +19,10 @@ manual() {
     rclone sync /userdata/system/batocera.conf backup:${destinationFolder}/system --progress
 
     echo "> SAVES sync" -------------------------------------------------------------------------------------
-    rclone sync /userdata/saves backup:${destinationFolder}/saves --progress --exclude "flatpak/**"
+    rclone sync /userdata/saves backup:${destinationFolder}/saves --exclude "flatpak/**" --progress
 
     echo "> ROMS sync" --------------------------------------------------------------------------------------
-    rclone sync /userdata/roms backup:${destinationFolder}/roms --progress --exclude "flatpak/**"
+    rclone sync /userdata/roms backup:${destinationFolder}/roms --exclude "flatpak/**" --progress
 
     echo "> BIOS sync" --------------------------------------------------------------------------------------
     rclone sync /userdata/bios backup:${destinationFolder}/bios --progress
@@ -38,8 +38,7 @@ start() {
         echo "0" >${statusFile}
         rm -f ${logFile}
 
-        # TODO: exclude flatpak!
-        rclone sync /userdata/saves backup:${destinationFolder} --log-file ${logFile} --log-level INFO --stats 1s
+        rclone sync /userdata/saves backup:${destinationFolder}/saves --exclude "flatpak/**" --log-file ${logFile} --log-level INFO --stats 1s
     done
 }
 
