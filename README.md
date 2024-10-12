@@ -21,7 +21,7 @@ This script uses [rclone](https://rclone.org/) to periodically backup your data 
 
 To do a manual backup: `bash services/backup manual`
 
-This does a full backup including not just saves, but your config, roms and bios files. Use this after you edit any of those.
+This does a full backup including not just saves, but your configuration (`batocera.conf`), ROMs and BIOS files. Use this after you modify any of those.
 
 To continuously monitor progress: `watch -n 0.5 batocera-services status backup`
 
