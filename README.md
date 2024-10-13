@@ -2,7 +2,7 @@
 
 A script for [Batocera](https://batocera.org/) to backup your data to a cloud storage using [rclone](https://rclone.org/).
 
-It's tested on [v40](https://batocera.org/changelog).
+It's tested and works with Batocera [v40](https://batocera.org/changelog) and rclone's [OneDrive provider](https://rclone.org/onedrive/).
 
 It has two modes:
 
@@ -36,4 +36,6 @@ This does a full backup including not just saves, but your configuration (`batoc
 
 ## Development
 
-Open this repository in VS Code and install the [workspace recommended extensions](https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions), so the scripts can be [automatically copied](/.vscode/settings.json#L6) to the Batocera machine on save. Local dependencies that need to be installed for the copying to work: `sshpass`, `scp`.
+Open this repository in VS Code and install the [workspace recommended extensions](https://code.visualstudio.com/docs/editor/extension-marketplace#_workspace-recommended-extensions), so the scripts can be [automatically copied](/.vscode/settings.json#L6) to the Batocera machine on save.
+
+Local dependencies that need to be installed for the copying to work: `sshpass`, `scp`.
