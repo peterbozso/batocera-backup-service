@@ -18,6 +18,9 @@ keepLogs=false
 runFile=/var/run/backup-service
 logFile=/var/log/backup-service.log
 
+# This needs to be set explicitly, because $HOME is not set when the service is started by Batocera.
+export RCLONE_CONFIG=/userdata/system/.config/rclone/rclone.conf
+
 manual() {
     echo "> CONFIG sync" ------------------------------------------------------------------------------------
     rclone sync /userdata/system/batocera.conf backup:${destinationFolder}/system --progress
@@ -32,11 +35,6 @@ manual() {
     rclone sync /userdata/bios backup:${destinationFolder}/bios --progress
 }
 
-# TODO: fix start at system startup.
-# For some reason it fails with these errors:
-# NOTICE: Config file "/.config/rclone/rclone.conf" not found - using defaults
-# Failed to create file system for "backup:/Games/Batocera/saves": didn't find section in config file
-# https://discord.com/channels/357518249883205632/524321176068161554/1294933719626416139
 start() {
     touch ${runFile}
 
