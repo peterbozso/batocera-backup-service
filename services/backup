@@ -7,7 +7,7 @@ destinationFolder=/Games/Batocera
 
 # Waiting time between two backups in seconds.
 # The below configuration means that the service will do a backup every minute.
-waitSeconds=10 # TODO: change it back to 60
+waitSeconds=60
 
 # If set to true, logs from all runs of the service are preserved.
 # If set to false, only logs since the last start of the service are kept.
