@@ -30,6 +30,10 @@ manual() {
     rclone sync /userdata/bios backup:${destinationFolder}/bios --progress
 }
 
+# TODO: fix start at system startup.
+# For some reason it fails with these errors:
+# NOTICE: Config file "/.config/rclone/rclone.conf" not found - using defaults
+# Failed to create file system for "backup:/Games/Batocera/saves": didn't find section in config file
 start() {
     touch ${runFile}
 
