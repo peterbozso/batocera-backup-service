@@ -1,17 +1,19 @@
 #!/bin/bash
 
-# --------------------- CONFIG BEGIN ---------------------
+# ------------------------------- CONFIG BEGIN --------------------------------
 
 # The location of the saves folder on your cloud storage.
 destinationFolder=/Games/Batocera
 
-# Waiting time between two backups in seconds. The below configuration means that the service will do a backup every minute.
+# Waiting time between two backups in seconds.
+# The below configuration means that the service will do a backup every minute.
 waitSeconds=10 # TODO: change it back to 60
 
-# If set to true, logs from all runs of the service are preserved. If set to false, only logs since the last start of the service are kept.
+# If set to true, logs from all runs of the service are preserved.
+# If set to false, only logs since the last start of the service are kept.
 keepLogs=false
 
-# ---------------------- CONFIG END ----------------------
+# -------------------------------- CONFIG END ---------------------------------
 
 runFile=/var/run/backup-service
 logFile=/var/log/backup-service.log
