@@ -79,6 +79,6 @@ case "$1" in
         status
         ;;
     *)
-        echo "Usage: https://gitlab.com/peterbozso/batocera-scripts#backup"
+        echo "Usage: https://github.com/peterbozso/batocera-backup-service"
         ;;
 esac
