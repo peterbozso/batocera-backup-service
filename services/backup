@@ -6,7 +6,10 @@
 destinationFolder=/Games/Batocera
 
 # Waiting time between two backups in seconds. The below configuration means that the service will do a backup every minute.
-waitSeconds=60
+waitSeconds=10 # TODO: change it back to 60
+
+# If set to true, logs from all runs of the service are preserved. If set to false, only logs since the last start of the service are kept.
+keepLogs=false
 
 # ---------------------- CONFIG END ----------------------
 
@@ -29,9 +32,16 @@ manual() {
 
 start() {
     touch ${runFile}
+
+    if [ "$keepLogs" = false ]; then
+        rm -f ${logFile}
+    fi
+
+    timeStamp="$(date)"
+    echo -e "\n--- SERVICE START - [${timeStamp}] ---\n" >>${logFile}
+
     while test -e ${runFile}; do
         sleep ${waitSeconds}
-        # TODO: limit log file size
         rclone sync /userdata/saves backup:${destinationFolder}/saves --exclude "flatpak/**" --log-file ${logFile} --log-level INFO
     done
 }
@@ -42,7 +52,7 @@ stop() {
 
 status() {
     if test -e ${runFile}; then
-        echo "Backup service is running. You can find it's logs in: ${logFile}"
+        echo "Backup service is running. Logs: ${logFile}"
     else
         echo "Backup service is not running."
     fi
