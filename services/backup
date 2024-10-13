@@ -10,8 +10,8 @@ waitSeconds=60
 
 # ---------------------- CONFIG END ----------------------
 
-runFile=/var/run/backup
-logFile=/var/log/backup.log
+runFile=/var/run/backup-service
+logFile=/var/log/backup-service.log
 
 manual() {
     echo "> CONFIG sync" ------------------------------------------------------------------------------------
