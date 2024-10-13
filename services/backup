@@ -36,6 +36,7 @@ manual() {
 # For some reason it fails with these errors:
 # NOTICE: Config file "/.config/rclone/rclone.conf" not found - using defaults
 # Failed to create file system for "backup:/Games/Batocera/saves": didn't find section in config file
+# https://discord.com/channels/357518249883205632/524321176068161554/1294933719626416139
 start() {
     touch ${runFile}
 
