@@ -1,6 +1,6 @@
 # Batocera Backup Service
 
-A script for [Batocera](https://batocera.org/) to backup your data to a cloud storage using [rclone](https://rclone.org/).
+A script for [Batocera](https://batocera.org/) to back up your data to a cloud storage using [rclone](https://rclone.org/).
 
 It's tested and works with Batocera [v40](https://batocera.org/changelog) and rclone's [OneDrive provider](https://rclone.org/onedrive/). Other providers very likely work just as well, they just haven't been tested by me. Open an issue if you run into one that doesn't work.
 
