@@ -11,7 +11,6 @@ waitSeconds=60
 # ---------------------- CONFIG END ----------------------
 
 runFile=/var/run/backup
-statusFile=/var/run/backup.status
 logFile=/var/log/backup.log
 
 manual() {
@@ -31,14 +30,9 @@ manual() {
 start() {
     touch ${runFile}
     while test -e ${runFile}; do
-        nextBackup=$(($(date +%s) + ${waitSeconds}))
-        echo ${nextBackup} >${statusFile}
         sleep ${waitSeconds}
-
-        echo "0" >${statusFile}
-        rm -f ${logFile}
-
-        rclone sync /userdata/saves backup:${destinationFolder}/saves --exclude "flatpak/**" --log-file ${logFile} --log-level INFO --stats 1s
+        # TODO: limit log file size
+        rclone sync /userdata/saves backup:${destinationFolder}/saves --exclude "flatpak/**" --log-file ${logFile} --log-level INFO
     done
 }
 
@@ -48,16 +42,9 @@ stop() {
 
 status() {
     if test -e ${runFile}; then
-        nextBackupSeconds=$(<${statusFile})
-
-        if [ ${nextBackupSeconds} -eq "0" ]; then
-            cat ${logFile}
-        else
-            nextBackupDate=$(date --date @${nextBackupSeconds})
-            echo "There's no backup in progress. Next: ${nextBackupDate}"
-        fi
+        echo "Backup service is running. You can find it's logs in: ${logFile}"
     else
-        echo "Service is not running."
+        echo "Backup service is not running."
     fi
 }
 

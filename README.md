@@ -28,13 +28,11 @@ It has two modes:
 
 Refer to the [Batocera wiki](https://wiki.batocera.org/launch_a_script#services) to learn how to manage services.
 
-To continuously monitor progress: `watch -n 0.5 batocera-services status backup`
-
 ### Manual
 
 To do a manual backup: `bash services/backup manual`
 
-This does a full backup including not just saves, but your configuration (`batocera.conf`), ROMs and BIOS files. Use this after you modify any of those.
+This does a full backup including not just saves, but your configuration (`batocera.conf`), ROMs and BIOS files. Use this after modifying any of those.
 
 ## Development
 
