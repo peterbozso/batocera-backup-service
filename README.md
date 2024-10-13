@@ -2,6 +2,8 @@
 
 A script for [Batocera](https://batocera.org/) to backup your data to a cloud storage using [rclone](https://rclone.org/).
 
+It's tested on [v40](https://batocera.org/changelog).
+
 It has two modes:
 
 * [Automatic](#automatic): using Batocera's [services](https://wiki.batocera.org/launch_a_script#services) feature, it periodically uploads your saves in the background.
