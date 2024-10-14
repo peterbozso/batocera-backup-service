@@ -2,8 +2,8 @@
 
 # ------------------------------- CONFIG BEGIN --------------------------------
 
-# The location of the saves folder on your cloud storage.
-destinationFolder=/Games/Batocera
+# The location of Batocera data on your cloud storage.
+destDir=/Games/Batocera
 
 # Waiting time between two backups in seconds.
 # The below configuration means that the service will do a backup every minute.
@@ -23,16 +23,16 @@ export RCLONE_CONFIG=/userdata/system/.config/rclone/rclone.conf
 
 manual() {
     echo "> CONFIG sync" ------------------------------------------------------------------------------------
-    rclone sync /userdata/system/batocera.conf backup:${destinationFolder}/system --progress
+    rclone sync /userdata/system/batocera.conf backup:${destDir}/system --progress
 
     echo "> SAVES sync" -------------------------------------------------------------------------------------
-    rclone sync /userdata/saves backup:${destinationFolder}/saves --exclude "flatpak/**" --progress
+    rclone sync /userdata/saves backup:${destDir}/saves --exclude "flatpak/**" --progress
 
     echo "> ROMS sync" --------------------------------------------------------------------------------------
-    rclone sync /userdata/roms backup:${destinationFolder}/roms --exclude "flatpak/**" --progress
+    rclone sync /userdata/roms backup:${destDir}/roms --exclude "flatpak/**" --progress
 
     echo "> BIOS sync" --------------------------------------------------------------------------------------
-    rclone sync /userdata/bios backup:${destinationFolder}/bios --progress
+    rclone sync /userdata/bios backup:${destDir}/bios --progress
 }
 
 start() {
@@ -47,7 +47,7 @@ start() {
 
     while test -e ${runFile}; do
         sleep ${waitSeconds}
-        rclone sync /userdata/saves backup:${destinationFolder}/saves --exclude "flatpak/**" --log-file ${logFile} --log-level INFO
+        rclone sync /userdata/saves backup:${destDir}/saves --exclude "flatpak/**" --log-file ${logFile} --log-level INFO
     done
 }
 
