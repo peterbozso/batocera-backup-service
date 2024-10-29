@@ -14,6 +14,16 @@ The script has two modes:
 >
 > **Background**: since [Steam on Batocera](https://wiki.batocera.org/systems:steam) is installed using [Flatpak](https://wiki.batocera.org/systems:flatpak), it's data is structured differently than the other systems. All game data, not just saves, is stored in the `/userdata/saves/flatpak` directory, which is currently ignored by the script.
 
+## FAQ
+
+### Can I use this script to keep Batocera installs on multiple devices in sync?
+
+No. rclone can upload **or** download files to/from a cloud storage. This script only does the former. rclone's [bidirectional sync](https://rclone.org/bisync/) feature is currently in beta. As soon as that changes, this script will be most likely updated to take advantage of it. Until then, [Syncthing](https://wiki.batocera.org/syncthing) is the best solution for this use case.
+
+### Can I use this script to back up to the same cloud storage from multiple devices?
+
+Yes. If you'd like to do that, make sure you configure the [destDir](/backup#6) variable to point to a different directory for each device to avoid collisions. Otherwise they'd overwrite each other's files that are named the same.
+
 ## Setup
 
 1. Copy the [backup](/backup) script to your Batocera installation's `/userdata/system/services` directory.
