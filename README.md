@@ -24,7 +24,7 @@ No. rclone can upload **or** download files to/from a cloud storage. This script
 
 ### Can I use this script to back up to the same cloud storage from multiple devices?
 
-Yes. If you'd like to do that, make sure you configure the [destDir](/backup#6) variable to point to a different directory for each device to avoid collisions. Otherwise they'd overwrite each other's files that are named the same.
+Yes. If you'd like to do that, make sure you configure the [destDir](/backup#L6) variable to point to a different directory for each device to avoid collisions. Otherwise they'd overwrite each other's files that are named the same.
 
 ## Setup
 
